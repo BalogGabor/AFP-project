@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeLoad - Load in seconds.</title>
+</head>
+<body>
+<main>
+<h2>Új fuvar feladása (Megbízó)</h2>
+<h3>Minden mezőt töltsön ki!</h3>
+
+<div>
+<h4>Adja meg a szállítandó áru részleteit:</h4>
+<h5>Kérjük, pontosan töltse ki az útvonalat és a dátumokat, hogy a szállítók ajánlatot tehessenek.</h5>
+</div>
+
+<div>
+<form method="post">
+
+<label for="arutipus">Áru jellege / kategória:</label>
+<select name="cargo_type" id="arutipus">
+    <option value="raklapos">Normál raklapos áru</option>
+    <option value="hutos">Hűtést igénylő áru</option>
+    <option value="ömlesztett">Ömlesztett áru</option>
+    <option value="koltoztetes">Költöztetés / Bútor</option>
+    <option value="gep">Gép / Járműszállítás</option>
+</select>
+<hr>
+
+<label for="suly">Összsúly (kg):</label>
+<input type="number" name="weight_kg" id="suly">
+<hr>
+
+<label for="terjedelem">Terjedelem / Raklapok száma:</label>
+<input type="text" name="volume_info" id="terjedelem" placeholder="pl: 4 EUR raklap">
+<hr>
+
+<label for="felrako_orszag">Felrakó ország (Honnan):</label>
+<input type="text" name="loading_country" id="felrako_orszag" list="orszagok">
+<datalist id="orszagok">
+    <option value="Magyarország" >
+    <option value="Németország" >
+    <option value="Nagy-Britannia" >
+    <option value="Hollandia" >
+    <option value="Ausztria" >
+    <option value="Szlovákia" >
+    <option value="Románia" >
+    <option value="Olaszország" >
+    <option value="Franciaország" >
+    <option value="Svédország" >    
+</datalist>
+<hr>
+
+<label for="felrako_varos">Felrakó város / Irányítószám:</label>
+<input type="text" name="loading_city" id="felrako_varos" list="fvarosok">
+<datalist id="fvarosok">
+    <option value="Budapest" >
+    <option value="Miskolc" >
+    <option value="Debrecen" >
+    <option value="Győr" >
+    <option value="Szeged" >
+</datalist>
+<hr>
+
+<label for="lerako_orszag">Lerakó ország (Hová):</label>
+<input type="text" name="unloading_country" id="lerako_orszag" list="orszagok">
+
+<hr>
+
+<label for="lerako_varos">Lerakó város / Irányítószám:</label>
+<input type="text" name="unloading_city" id="lerako_varos" list="lvarosok">
+<datalist id="lvarosok">
+    <option value="Bécs" >
+    <option value="München" >
+    <option value="Budapest" >
+    <option value="Pozsony" >
+    <option value="Prága" >
+</datalist>
+<hr>
+
+<label for="felrakas_datum">Felrakás dátuma:</label>
+<input type="date" name="loading_date" id="felrakas_datum">
+<hr>
+
+<label for="lerakas_datum">Lerakás dátuma:</label>
+<input type="date" name="unloading_date" id="lerakas_datum">
+<hr>
+
+<label for="iranyar">Tervezett irányár (Ft):</label>
+<input type="number" name="target_price" id="iranyar">
+
+<input type="reset" value="Adatok törlése">
+<hr>
+<input type="submit" value="Beküldés">
+</form>
+
+</div>
+</main>
+
+<footer>
+<h3 id="kapcsolat">Kapcsolat</h3>
+<a href="mailto:info@veload.hu">Lépjen velünk kapcsolatba</a>
+<p>info@veload.hu</p>
+</footer>
+
+</body>
+</html>
