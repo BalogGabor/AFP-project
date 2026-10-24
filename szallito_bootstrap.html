@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeLoad - Járműkapacitás feltöltése</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <header class="bg-primary text-white py-4 text-center shadow-sm mb-4"> 
+        <h1 class="fw-bold h3 m-0">VeLoad - Szabad jármű bejelentése</h1>
+    </header>
+
+    <main class="container py-3">
+            <div class="mb-4">
+            <a href="index_bootstrap.html" class="btn btn-sm btn-secondary fw-semibold">← Vissza a főoldalra</a>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7">
+        
+        <!---->
+                <div class="card shadow-sm p-4 border-0">
+                    
+                    <h2 class="h4 fw-bold text-dark mb-1">Szabad járműkapacitás megadása</h2>
+                    <p class="text-muted small mb-4">Minden mezőt töltsön ki!</p>
+
+                    <div class="alert alert-secondary border-0 mb-4">
+                        <h4 class="h6 fw-bold mb-1">Adja meg a járműve és a tervezett útvonala részleteit:</h4>
+                        <p class="small mb-0">Kérjük, pontosan adja meg a jármű tulajdonságait és a szabad dátumokat, hogy a megbízók rakományt ajánlhassanak.</p>
+                    </div>
+
+                    <form method="post" class="needs-validation" novalidate>
+
+                        <h3 class="h6 fw-bold text-primary text-uppercase border-bottom pb-2 mb-3">1. Jármű adatai</h3>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="jarmutípus" class="form-label fw-semibold">Jármű típusa:</label>
+                                <select name="vehicle_type" id="jarmutípus" class="form-select" required>
+                                    <option value="" selected disabled>Válasszon típust...</option>
+                                    <option value="furgon">Furgon (3.5t alatt)</option>
+                                    <option value="kisteher">Kisteherautó (3.5t - 7.5t)</option>
+                                    <option value="teherauto">Teherautó (7.5t - 18t)</option>
+                                    <option value="kamion">Kamion / Nyergesvontató (40t)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="felepitmeny" class="form-label fw-semibold">Felépítmény fajtája:</label>
+                                <select name="body_type" id="felepitmeny" class="form-select" required>
+                                    <option value="" selected disabled>Válasszon felépítményt...</option>
+                                    <option value="ponyvas">Ponyvás</option>
+                                    <option value="dobozos">Dobozos / Zárt</option>
+                                    <option value="hutos">Hűtőfelépítmény</option>
+                                    <option value="platos">Nyitott platós</option>
+                                    <option value="specialis">Speciális / Gépszállító</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="teherbiras" class="form-label fw-semibold">Max. teherbírás (kg):</label>
+                                <input type="number" name="max_weight_kg" id="teherbiras" class="form-control" placeholder="Pl: 24000" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="rendszam" class="form-label fw-semibold">Rendszám:</label>
+                                <input type="text" name="license_plate" id="rendszam" class="form-control" placeholder="Pl: AA-BB-123" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="szabadhely" class="form-label fw-semibold">Szabad raktér mérete:</label>
+                            <input type="text" name="free_space_info" id="szabadhely" class="form-control" placeholder="Pl: 33 palettás hely szabad, vagy teljes raktér" required>
+                        </div>
+
+                        <h3 class="h6 fw-bold text-primary text-uppercase border-bottom pb-2 mb-3">2. Tervezett útvonal és időzítés</h3>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded border border-light-subtle h-100">
+                                    <span class="badge bg-success mb-3">INDULÁS (Honnan)</span>
+                                    <div class="mb-2">
+                                        <label for="indulo_orszag" class="form-label small fw-semibold text-secondary mb-1">Ország:</label>
+                                        <input type="text" name="departure_country" id="indulo_orszag" list="orszagok" class="form-control form-control-sm" placeholder="Gépeljen..." required>
+                                    </div>
+                                    <div>
+                                        <label for="indulo_varos" class="form-label small fw-semibold text-secondary mb-1">Város / Irányítószám:</label>
+                                        <input type="text" name="departure_city" id="indulo_varos" list="fvarosok" class="form-control form-control-sm" placeholder="Gépeljen..." required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded border border-light-subtle h-100">
+                                    <span class="badge bg-danger mb-3">ÉRKEZÉS (Hová)</span>
+                                    <div class="mb-2">
+                                        <label for="erkezo_orszag" class="form-label small fw-semibold text-secondary mb-1">Ország:</label>
+                                        <input type="text" name="destination_country" id="erkezo_orszag" list="orszagok" class="form-control form-control-sm" placeholder="Gépeljen..." required>
+                                    </div>
+                                    <div>
+                                        <label for="erkezo_varos" class="form-label small fw-semibold text-secondary mb-1">Város / Irányítószám:</label>
+                                        <input type="text" name="destination_city" id="erkezo_varos" list="lvarosok" class="form-control form-control-sm" placeholder="Gépeljen..." required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="szabad_ettol" class="form-label fw-semibold">Szabad kapacitás kezdete:</label>
+                                <input type="date" name="available_from" id="szabad_ettol" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="szabad_eddig" class="form-label fw-semibold">Szabad kapacitás vége:</label>
+                                <input type="date" name="available_to" id="szabad_eddig" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <datalist id="orszagok">
+                            <option value="Magyarország">
+                            <option value="Németország">
+                            <option value="Nagy-Britannia">
+                            <option value="Hollandia">
+                            <option value="Ausztria">
+                            <option value="Szlovákia">
+                            <option value="Románia">
+                            <option value="Olaszország">
+                            <option value="Franciaország">
+                            <option value="Svédország">    
+                        </datalist>
+
+                        <datalist id="fvarosok">
+                            <option value="Budapest">
+                            <option value="Miskolc">
+                            <option value="Debrecen">
+                            <option value="Győr">
+                            <option value="Szeged">
+                        </datalist>
+
+                        <datalist id="lvarosok">
+                            <option value="Bécs">
+                            <option value="München">
+                            <option value="Budapest">
+                            <option value="Pozsony">
+                            <option value="Prága">
+                        </datalist>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold">Járműkapacitás közzététele</button>
+                            <input type="reset" value="Adatok törlése" class="btn btn-link btn-sm text-muted text-decoration-none">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+<footer class="text-center py-4 text-muted bg-white border-top mt-5">
+    <h3 id="kapcsolat" class="h6 fw-bold text-dark mb-2">Kapcsolat</h3>
+    <p class="mb-1"><a href="mailto:info@veload.hu" class="text-primary text-decoration-none fw-semibold">Lépjen velünk kapcsolatba</a></p>
+    <p class="small mb-0">info@veload.hu</p>
+</footer>
+
+</body>
+</html>
