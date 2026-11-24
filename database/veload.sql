@@ -1,0 +1,15 @@
+CREATE DATABASE IF NOT EXISTS veload
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_hungarian_ci;
+
+USE veload;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    role ENUM('szallito', 'megbizo') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
