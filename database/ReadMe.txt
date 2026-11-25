@@ -1,0 +1,1 @@
+A veload.sql fájlt importáld a XAMPP csomag MySQL felületén az adatbázis struktúra kialakításához
