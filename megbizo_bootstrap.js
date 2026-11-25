@@ -47,6 +47,29 @@ document.addEventListener('DOMContentLoaded', function() {
             
             event.preventDefault();
             event.stopPropagation();
+        } else {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch('regisztracio.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    form.reset();
+                    form.classList.remove('was-validated');
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Regisztrációs hiba:', error);
+                alert('Hiba történt a regisztráció során. Kérjük, próbálja újra!');
+            });
         }
 
         form.classList.add('was-validated');
