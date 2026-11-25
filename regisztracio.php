@@ -128,12 +128,8 @@ try {
     ]);
 
     // Sikeres regisztráció
-    http_response_code(201);
-    echo json_encode([
-        'success' => true,
-        'message' => 'Sikeres regisztráció!',
-        'user_id' => $pdo->lastInsertId()
-    ]);
+    header('Location: index_bootstrap.html');
+    exit;
 
 } catch (PDOException $e) {
 
